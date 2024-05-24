@@ -1,4 +1,5 @@
 # Sistema de Planillas
+import datetime
 #
 # Funciones
 # Muestra el menu principal del sistema.
@@ -64,8 +65,10 @@ def calcular_salario_neto(salario_bruto, deducciones_totales):
 # Genera un archivo de texto con el recibo.
 def generar_recibo_txt(nombre, salario_bruto, isss, afp, renta, deducciones_totales, salario_neto):
     archivo_txt = f"{nombre}_recibo.txt"
+    fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     with open(archivo_txt, "w") as file:
         file.write("Recibo de Pago\n")                                              #Escribe el encabezado del recibo.
+        file.write(f"Fecha y Hora: {fecha_actual}\n") 
         file.write(f"\nEmpleado:\n{nombre}\n")                                      #Escribe el nombre del empleado.
         file.write(f"\nSalario Bruto:             ${salario_bruto:.2f}\n")          #Escribe el sueldo bruta.
         file.write(f"\nISSS:                      ${isss:.2f}\n")                   #Escribe la deduccion de ISSS.
