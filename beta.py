@@ -4,9 +4,9 @@ import datetime
 # Funciones
 # Muestra el menu principal del sistema.
 def mostrar_menu_principal():
-    print("\n----------------------------------")
+    print("\n-----------------------------------------------------------")
     print("Bienvenido al Sistema de Planillas")
-    print("----------------------------------")    
+    print("-----------------------------------------------------------")    
     print("⦁ Menú Principal:")
     print("1. Calcular Salario")
     print("2. Salir")
@@ -109,9 +109,9 @@ def calcular_salario():
             elif tipo_secundario == 2:
                 tipo_horas_extras = 4
             else:
-                print("------------------------------------------------------------")
+                print("-------------------------------------------------------------------------------------")
                 print("Opción no válida. Por favor, seleccione una opción del menú.")
-                print("------------------------------------------------------------")
+                print("-------------------------------------------------------------------------------------")
                 return
         elif tipo_principal == 4:
             #Menu para el tipo de horas extras en Asueto.
@@ -123,14 +123,14 @@ def calcular_salario():
             elif tipo_secundario == 2:
                 tipo_horas_extras = 6
             else:
-                print("------------------------------------------------------------")
+                print("-------------------------------------------------------------------------------------")
                 print("Opción no válida. Por favor, seleccione una opción del menú.")
-                print("------------------------------------------------------------")
+                print("-------------------------------------------------------------------------------------")
                 return
         else:
-            print("------------------------------------------------------------")
+            print("-------------------------------------------------------------------------------------")
             print("Opción no válida. Por favor, seleccione una opción del menú.")
-            print("------------------------------------------------------------")
+            print("-------------------------------------------------------------------------------------")
             return
         
         horas_extras = float(input("‣ Horas Extras: ").strip()) #horas extras.
@@ -153,7 +153,7 @@ def calcular_salario():
     salario_neto = calcular_salario_neto(salario_bruto, deducciones_totales)
     
     #Datos en consola
-    print("-----------------------------------------------------------")
+    print("------------------------------------------------------------------------------------")
     print("⦁ Información de Pago")                                       #Imprime el encabezado del recibo.
     print(f"⦁ Empleado: {nombre} ")                                    #Imprime el nombre del empleado.
     print(f"⦁ Salario Bruto:             ${salario_bruto:.2f}")          #Imprime el sueldo bruta.
@@ -162,7 +162,7 @@ def calcular_salario():
     print(f"⦁ Renta:                     ${renta:.2f}")                  #Imprime la deduccion de renta.
     print(f"⦁ Deducciones Totales:       ${deducciones_totales:.2f}")    #Imprime las deducciones totales.
     print(f"⦁ Salario Neto:              ${salario_neto:.2f}")           #Imprime el sueldo neto.
-    print("-----------------------------------------------------------")
+    print("------------------------------------------------------------------------------------")
     
     #Datos en archivo txt
     generar_recibo_txt(nombre, salario_bruto, isss, afp, renta, deducciones_totales, salario_neto)

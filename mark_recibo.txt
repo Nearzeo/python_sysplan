@@ -1,0 +1,14 @@
+Recibo de Pago
+Fecha y Hora: 2024-06-07 02:31:52
+
+Empleado:
+mark
+
+Salario Bruto:             $836.36
+
+ISSS:                      $25.09
+AFP:                       $60.64
+Renta:                     $71.40
+Deducciones Totales:       $157.13
+
+Salario Neto:              $679.23
