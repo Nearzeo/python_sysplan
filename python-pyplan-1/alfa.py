@@ -15,7 +15,7 @@ def mostrar_menu_principal():
     print("3. Eliminar Empleado de la Planilla")
     print("4. Ver Lista de Empleados")
     print("5. Buscar Empleado")
-    print("6. Salir, {RESET_COLOR}")
+    print(f"6. Salir {RESET_COLOR}")
 
 if __name__ == "__main__":
     imprimir_bienvenida()

@@ -8,12 +8,12 @@ BRIGHT = '\033[1m'
 def rgb_to_ansi(r, g, b):
     return f'\033[38;2;{r};{g};{b}m'
 
-RED = rgb_to_ansi(255, 69, 69)
-GREEN = rgb_to_ansi(0, 255, 127)
-YELLOW = rgb_to_ansi(255, 255, 28)
-BLUE = rgb_to_ansi(30, 144, 255)
-MAGENTA = rgb_to_ansi(183, 166, 246)  # Ejemplo: puedes cambiar este valor
-CYAN = rgb_to_ansi(199, 255, 237)     # Ejemplo: puedes cambiar este valor
+RED = rgb_to_ansi(243, 139, 168)
+GREEN = rgb_to_ansi(166, 227, 161)
+YELLOW = rgb_to_ansi(249, 226, 175)
+BLUE = rgb_to_ansi(137, 180, 250)
+MAGENTA = rgb_to_ansi(203, 166, 247)  
+CYAN = rgb_to_ansi(148, 226, 213)
 WHITE = '\033[37m'
 
 def generar_recibo_txt(nombre, salario_bruto, isss, afp, renta, deducciones_totales, salario_neto):
