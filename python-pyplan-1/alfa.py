@@ -1,20 +1,19 @@
-# alfa.py
-import datetime
 from welcome import imprimir_bienvenida
-from empleados import ingresar_empleado, eliminar_empleado, ver_lista_empleados, buscar_empleado, empleados
+from empleados import ingresar_empleado, eliminar_empleado, ver_lista_empleados, buscar_empleado
 from calculos import calcular_tarifa_hora, calcular_salario_hora_extra, calcular_salario_bruto, calcular_deducciones, calcular_salario_neto
-from utils import generar_recibo_txt, RESET_COLOR, BRIGHT, BLUE, MAGENTA, RED, CYAN
+from utils import leer_empleados, generar_recibo_txt, RESET_COLOR, BLUE, GREEN, RED, CYAN
+
 def mostrar_menu_principal():
     print(f"{BLUE}\n-----------------------------------------------------------")
     print("Bienvenido al Sistema de Planillas")
     print(f"-----------------------------------------------------------{RESET_COLOR}")
-    print(f"{MAGENTA}⦁ Menú Principal:")
+    print(f"{GREEN}⦁ Menú Principal:")
     print("1. Ingresar Empleado a la Planilla")
     print("2. Calcular Salario")
     print("3. Eliminar Empleado de la Planilla")
     print("4. Ver Lista de Empleados")
     print("5. Buscar Empleado")
-    print(f"6. Salir {RESET_COLOR}")
+    print("6. Salir, {RESET_COLOR}")
 
 if __name__ == "__main__":
     imprimir_bienvenida()
@@ -24,25 +23,26 @@ if __name__ == "__main__":
         if opcion == "1":
             ingresar_empleado()
         elif opcion == "2":
-            print(f"{MAGENTA}-----------------------------------------------------------")
+            print(f"{GREEN}-----------------------------------------------------------")
             print("‣ Ingrese los siguientes datos: \n(Recuerde que el sistema está diseñado para calcular el sueldo neto mensual.)")
             print(f"-----------------------------------------------------------{RESET_COLOR}")
             id_empleado = input(f"{CYAN}‣ ID del empleado: {RESET_COLOR}").strip()
             nombre = input(f"{CYAN}‣ Nombre del empleado: {RESET_COLOR}").strip()
-            if id_empleado not in empleados or empleados[id_empleado]['nombre'] != nombre:
+            empleados = leer_empleados()
+            empleado = next((emp for emp in empleados if emp['ID del empleado'] == id_empleado and emp['Nombre'] == nombre), None)
+            if not empleado:
                 print(f"{RED}-----------------------------------------------------------")
                 print("El empleado no existe en la planilla o los datos no coinciden.")
                 print("-----------------------------------------------------------{RESET_COLOR}")
                 continue
 
-            empleado = empleados[id_empleado]
-            salario_base = empleado['salario_base']
+            salario_base = float(empleado['Salario Base'])
 
             total_horas_extras = 0
             tipo_horas_extras = 0
             desea_horas_extras = input(f"{CYAN}‣ ¿Desea ingresar horas extras? (si/no): {RESET_COLOR}").strip().lower()
             while desea_horas_extras == "si":
-                print(f"{MAGENTA}-----------------------------------------------------------")
+                print(f"{GREEN}-----------------------------------------------------------")
                 print("⦁ Tipos de Horas Extras:")
                 print("1. Diurnas")
                 print("2. Nocturnas")
@@ -56,7 +56,7 @@ if __name__ == "__main__":
                 elif tipo_principal == 2:
                     tipo_horas_extras = 2
                 elif tipo_principal == 3:
-                    print(f"{MAGENTA}-----------------------------------------------------------")
+                    print(f"{GREEN}-----------------------------------------------------------")
                     print("1. Diurnas\n2. Nocturnas")
                     print(f"-----------------------------------------------------------{RESET_COLOR}")
                     tipo_secundario = int(input(f"{CYAN}‣ Seleccione el tipo específico de horas extras en Día de Descanso: {RESET_COLOR}").strip())
@@ -70,7 +70,7 @@ if __name__ == "__main__":
                         print("-----------------------------------------------------------{RESET_COLOR}")
                         continue
                 elif tipo_principal == 4:
-                    print(f"{MAGENTA}-----------------------------------------------------------")
+                    print(f"{GREEN}-----------------------------------------------------------")
                     print("1. Diurnas\n2. Nocturnas")
                     print(f"-----------------------------------------------------------{RESET_COLOR}")
                     tipo_secundario = int(input(f"{CYAN}‣ Seleccione el tipo específico de horas extras en Asueto: {RESET_COLOR}").strip())
@@ -102,7 +102,7 @@ if __name__ == "__main__":
             isss, afp, renta, deducciones_totales = calcular_deducciones(salario_bruto)
             salario_neto = calcular_salario_neto(salario_bruto, deducciones_totales)
 
-            print(f"{MAGENTA}------------------------------------------------------------------------------------")
+            print(f"{GREEN}------------------------------------------------------------------------------------")
             print("⦁ Información de Pago")
             print(f"⦁ Empleado: {nombre} ")
             print(f"⦁ Salario Bruto:             ${salario_bruto:.2f}")
@@ -124,7 +124,7 @@ if __name__ == "__main__":
         elif opcion == "5":
             buscar_empleado()
         elif opcion == "6":
-            print(f"{MAGENTA}-----------------------------------------------------------")
+            print(f"{GREEN}-----------------------------------------------------------")
             print("Gracias por usar el sistema de nóminas. ¡Hasta luego!")
             print(f"-----------------------------------------------------------{RESET_COLOR}")
             break
