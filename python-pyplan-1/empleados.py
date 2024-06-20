@@ -1,27 +1,107 @@
-# empleados.py
-import datetime
-from utils import generar_recibo_txt, generar_lista_empleados_txt, generar_empleado_info_txt, RESET_COLOR, BRIGHT, GREEN, RED, YELLOW
+# Modulo empleados.py
 
+# Importaciones
+import re # permite buscar coincidencias.
+import datetime # permite trabajar con fecha 
+
+# Modulo utils.py
+from utils import generar_recibo_txt, generar_lista_empleados_txt, generar_empleado_info_txt, validar_correo, RESET_COLOR, BRIGHT, GREEN, RED, YELLOW
+
+#Diccionario 'empleados' Vacio
 empleados = {}
 
+#def 1: Nuevos Empleados
 def ingresar_empleado():
+
+# Función para ingresar un nuevo empleado al diccionario 'empleados'.
+# Solicita los datos del empleado y los valida antes de almacenarlos.
+    
+# Mensaje Inicial
     print(f"{GREEN}-----------------------------------------------------------")
     print("Ingrese los datos del nuevo empleado:")
     print(f"-----------------------------------------------------------{RESET_COLOR}")
-    id_empleado = input(f"{YELLOW}‣ ID del empleado: {RESET_COLOR}").strip()
+    
+# Solicitar y validar el ID del empleado
+    while True:
+        id_empleado = input(f"{YELLOW}‣ ID del empleado: {RESET_COLOR}").strip()
+        if not id_empleado:
+            print(f"{RED}El ID del empleado no puede estar vacío.{RESET_COLOR}")
+            continue
+        elif id_empleado in empleados:
+            print(f"{RED}Ya existe un empleado con ese ID.{RESET_COLOR}")
+            return
+        break
+        
+# Solicitar el nombre del empleado 
     nombre = input(f"{YELLOW}‣ Nombre del empleado: {RESET_COLOR}").strip()
-    if id_empleado in empleados:
-        print(f"{RED}El empleado ya existe en la planilla.{RESET_COLOR}")
-        return
-
+    
+# Solicitar el puesto de trabajo del empleado
     puesto = input(f"{YELLOW}‣ Puesto de trabajo: {RESET_COLOR}").strip()
-    sexo = input(f"{YELLOW}‣ Sexo (m/f): {RESET_COLOR}").strip()
-    edad = int(input(f"{YELLOW}‣ Edad: {RESET_COLOR}").strip())
-    telefono = input(f"{YELLOW}‣ Teléfono: {RESET_COLOR}").strip()
-    correo = input(f"{YELLOW}‣ Correo electrónico: {RESET_COLOR}").strip()
-    salario_base = float(input(f"{YELLOW}‣ Salario Base: {RESET_COLOR}").strip())
-    print(f"{GREEN}-----------------------------------------------------------{RESET_COLOR}")
+    
+# Solicitar y validar el sexo del empleado
+    while True:
+        sexo = input(f"{YELLOW}‣ Sexo (m/f): {RESET_COLOR}").strip().lower()
+        if sexo not in ['m', 'f']:
+            print(f"{RED}El sexo debe ser 'm' para masculino o 'f' para femenino.{RESET_COLOR}")
+            continue
+        break
+    
+# Solicitar y validar la edad del empleado
+    while True:
+        try:
+            edad = int(input(f"{YELLOW}‣ Edad: {RESET_COLOR}").strip())
+            if edad <= 0:
+                print(f"{RED}La edad debe ser un número positivo.{RESET_COLOR}")
+                continue
+            break
+        except ValueError:
+            print(f"{RED}Por favor, ingrese un número válido para la edad.{RESET_COLOR}")
 
+# Solicitar y validar el teléfono del empleado
+    while True:
+        telefono = input(f"{YELLOW}‣ Teléfono: {RESET_COLOR}").strip()
+        if not re.match(r'^\+?[0-9\s\-\(\)]+$', telefono):
+            print(f"{RED}El teléfono solo puede contener números, espacios, y los caracteres +, -, (, ).{RESET_COLOR}")
+            continue
+        break
+
+# Solicitar y validar el correo electrónico del empleado
+    while True:
+        correo = input(f"{YELLOW}‣ Correo electrónico: {RESET_COLOR}").strip()
+        if not validar_correo(correo):
+            print(f"{RED}El formato del correo electrónico no es válido.{RESET_COLOR}")
+            continue
+        break    
+
+# Solicitar y validar el salario base del empleado
+    while True:
+        try:
+            salario_base = float(input(f"{YELLOW}‣ Salario Base: {RESET_COLOR}").strip())
+            if salario_base <= 0:
+                print(f"{RED}El salario base debe ser un número positivo.{RESET_COLOR}")
+                continue
+            break
+        except ValueError:
+            print(f"{RED}Por favor, ingrese un número válido para el salario base.{RESET_COLOR}")
+
+# Mostrar y Confirmar los datos ingresados
+    print(f"{GREEN}-----------------------------------------------------------{RESET_COLOR}")
+    print(f"Por favor, confirme los datos ingresados:")
+    print(f"ID del empleado: {id_empleado}")
+    print(f"Nombre: {nombre}")
+    print(f"Puesto de trabajo: {puesto}")
+    print(f"Sexo: {sexo}")
+    print(f"Edad: {edad}")
+    print(f"Teléfono: {telefono}")
+    print(f"Correo electrónico: {correo}")
+    print(f"Salario Base: {salario_base}")
+    
+    confirmacion = input(f"{YELLOW}¿Son correctos estos datos? (si/no): {RESET_COLOR}").strip().lower()
+    if confirmacion != 'si':
+        print(f"{RED}Operación cancelada. Los datos no fueron guardados.{RESET_COLOR}")
+        return
+    
+    # Agregar el nuevo empleado al diccionario
     empleados[id_empleado] = {
         'nombre': nombre,
         'puesto': puesto,

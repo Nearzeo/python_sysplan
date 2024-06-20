@@ -1,4 +1,5 @@
 # utils.py
+import re
 import datetime
 
 RESET_COLOR = '\033[0m'
@@ -66,3 +67,7 @@ def generar_empleado_info_txt(info):
         file.write(f"Salario Base: ${info['salario_base']:.2f}\n")
         file.write("-----------------------------------------------------------\n")
     print(f"{GREEN}◆ Información del empleado generada: {archivo_txt}{RESET_COLOR}")
+
+def validar_correo(correo):
+    patron = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(patron, correo) is not None
