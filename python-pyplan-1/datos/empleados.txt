@@ -1,18 +1,36 @@
 ID del empleado: 000A1
-Nombre: Mario Franco
-Puesto de trabajo: Programador
+Nombre: mario
+Puesto de trabajo: programador
+Sexo: m
+Edad: 21
+Teléfono: 72924054
+Correo electrónico: mario-a1@mail.com
+Salario Base: 1500.0
+-----------------------------------------------------------
+ID del empleado: 000B1
+Nombre: alex
+Puesto de trabajo: contador
+Sexo: m
+Edad: 24
+Teléfono: 78574397
+Correo electrónico: alex-b1@mail.com
+Salario Base: 1000.0
+-----------------------------------------------------------
+ID del empleado: 000B2
+Nombre: bryan
+Puesto de trabajo: contador
 Sexo: m
 Edad: 27
-Teléfono: +50378059745
-Correo electrónico: mariof-a1@mail.com
-Salario Base: 1500.0
---------------------------------------------------
-ID del empleado: 1
-Nombre: a
-Puesto de trabajo: a
-Sexo: f
+Teléfono: 67888254
+Correo electrónico: bryan-b2@mail.com
+Salario Base: 800.0
+-----------------------------------------------------------
+ID del empleado: 000C1
+Nombre: jose
+Puesto de trabajo: operario
+Sexo: m
 Edad: 21
-Teléfono: 1
-Correo electrónico: 1@1.com
-Salario Base: 1.0
+Teléfono: 78654001
+Correo electrónico: jose-c1@mail.com
+Salario Base: 400.0
 -----------------------------------------------------------
