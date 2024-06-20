@@ -7,13 +7,13 @@ def mostrar_menu_principal():
     print(f"{BLUE}\n-----------------------------------------------------------")
     print("Bienvenido al Sistema de Planillas")
     print(f"-----------------------------------------------------------{RESET_COLOR}")
-    print(f"{GREEN}⦁ Menú Principal:")
+    print(f"{MAGENTA}⦁ Menú Principal:")
     print("1. Ingresar Empleado a la Planilla")
     print("2. Calcular Salario")
     print("3. Eliminar Empleado de la Planilla")
     print("4. Ver Lista de Empleados")
     print("5. Buscar Empleado")
-    print("6. Salir, {RESET_COLOR}")
+    print(f"6. Salir, {RESET_COLOR}")
 
 if __name__ == "__main__":
     imprimir_bienvenida()
